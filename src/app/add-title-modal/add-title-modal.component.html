@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title.id ? 'Edit Title' : 'Add New Title' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Title of Expense</ion-label>
+      <ion-input type="text" [(ngModel)]="title.Title_of_expenses" name="title" required></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit" [disabled]="!title.Title_of_expenses"> 
+      {{ title.id ? 'Update Title' : 'Add Title' }}
+    </ion-button>
+  </form>
+</ion-content>

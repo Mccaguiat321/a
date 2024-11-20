@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Expense</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/expenses/{{ titleId }}">Cancel</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Name of Expenses</ion-label>
+      <ion-input [(ngModel)]="name_of_expenses" name="name_of_expenses" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Price</ion-label>
+      <ion-input [(ngModel)]="price" name="price" type="number" required></ion-input>
+    </ion-item>
+
+    <ion-footer>
+      <ion-button expand="full" type="submit">Save</ion-button>
+    </ion-footer>
+  </form>
+</ion-content>

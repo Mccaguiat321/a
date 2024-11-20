@@ -1,20 +1,38 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>My Perosnal Budget Planner</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let title of titles">
+      <ion-label (click)="onSelectTitle(title)">
+        <h2>{{ title.Title_of_expenses }}</h2>
+        <h6>Total ₱{{ title.total_price | currency }}</h6> <!-- Display total expenses with currency pipe -->
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      </ion-label>
+      <ion-button color="primary" (click)="openUpdateTitleModal(title)">
+        Update
+      </ion-button>
+      <ion-button color="danger" (click)="deleteTitle(title.id)">
+        Delete
+      </ion-button>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="full" (click)="openAddTitleModal()">Add Title</ion-button>
+  <ion-list *ngIf="selectedExpenses && selectedExpenses.length > 0">
+    <ion-item>
+      <ion-label>
+        <h2>Expenses for {{ selectedTitle }}</h2>
+      </ion-label>
+    </ion-item>
+  
+    <ion-item *ngFor="let expense of selectedExpenses">
+      <ion-label>
+        <h3>{{ expense.name_of_expenses }}</h3>
+        <p>Amount: {{ expense.price }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
